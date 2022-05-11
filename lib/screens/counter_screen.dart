@@ -28,15 +28,38 @@ class _CounterScreenState extends State<CounterScreen> {
           ],
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          counter++;
-          setState(() {});
-        },
-        backgroundColor: Colors.blueGrey.shade400,
-        child: const Icon(Icons.touch_app_outlined),
+      floatingActionButton: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: [
+          FloatingActionButton(
+            onPressed: () {
+              counter--;
+              setState(() {});
+            },
+            backgroundColor: Colors.red,
+            child: const Icon(Icons.remove),
+          ),
+
+          FloatingActionButton(
+            onPressed: () {
+              counter = 0;
+              setState(() {});
+            },
+            backgroundColor: Colors.blueGrey.shade400,
+            child: const Icon(Icons.refresh),
+          ),
+
+          FloatingActionButton(
+            onPressed: () {
+              counter++;
+              setState(() {});
+            },
+            backgroundColor: const Color(0xFF26CD7B),
+            child: const Icon(Icons.add),
+          ),
+        ],
       ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat
     );
   }
 }
