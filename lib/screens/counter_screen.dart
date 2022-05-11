@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'package:flutter_counter_app/screens/custom_floating_actions.dart';
+
 class CounterScreen extends StatefulWidget {
   const CounterScreen({Key? key}) : super(key: key);
 
@@ -10,56 +12,44 @@ class CounterScreen extends StatefulWidget {
 class _CounterScreenState extends State<CounterScreen> {
   int counter = 0;
 
+  void increase() {
+    counter++;
+    setState(() {});
+  }
+
+  void decrease() {
+    counter--;
+    setState(() {});
+  }
+
+  void reset() {
+    counter = 0;
+    setState(() {});
+  }
+
   @override
   Widget build(BuildContext context) {
     const TextStyle fontSize30 = TextStyle(fontSize: 30);
 
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('CounterScreen'),
-        elevation: 0,
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Text('Counter taps', style: fontSize30),
-            Text('$counter', style: fontSize30)
-          ],
+        appBar: AppBar(
+          title: const Text('CounterScreen'),
+          elevation: 0,
         ),
-      ),
-      floatingActionButton: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: [
-          FloatingActionButton(
-            onPressed: () {
-              counter--;
-              setState(() {});
-            },
-            backgroundColor: Colors.red,
-            child: const Icon(Icons.remove),
+        body: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              const Text('Counter taps', style: fontSize30),
+              Text('$counter', style: fontSize30)
+            ],
           ),
-
-          FloatingActionButton(
-            onPressed: () {
-              counter = 0;
-              setState(() {});
-            },
-            backgroundColor: Colors.blueGrey.shade400,
-            child: const Icon(Icons.refresh),
-          ),
-
-          FloatingActionButton(
-            onPressed: () {
-              counter++;
-              setState(() {});
-            },
-            backgroundColor: const Color(0xFF26CD7B),
-            child: const Icon(Icons.add),
-          ),
-        ],
-      ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat
-    );
+        ),
+        floatingActionButton: CustomFloatingActions(
+          increaseFn: increase,
+          decreaseFn: decrease,
+          resetFn: reset,
+        ),
+        floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat);
   }
 }
