@@ -25,7 +25,6 @@ class HomeScreen extends StatelessWidget {
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           counter++;
-          print('hola mundo $counter');
         },
         backgroundColor: Colors.blueGrey.shade400,
         child: const Icon(Icons.touch_app_outlined),
